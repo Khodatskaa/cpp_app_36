@@ -7,11 +7,11 @@ int main() {
 
     std::ifstream inputFile(filePath);
     if (!inputFile.is_open()) {
-        std::cerr << "Error: Unable to open file " << filePath << std::endl;
+        std::cout << "Error: Unable to open file " << filePath << std::endl;
         return 1;
     }
 
-    std::string fileContent((std::istreambuf_iterator<char>(inputFile)), std::istreambuf_iterator<char>());
+    std::string fileContent((std::istreambuf_iterator<char>(inputFile)), std::istreambuf_iterator<char>());  //istreambuf_iterator<char> - iterator that reads characters from a streambuf
 
     inputFile.close();
 

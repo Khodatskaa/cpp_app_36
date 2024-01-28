@@ -19,7 +19,7 @@ public:
                 return false;
             }
 
-            std::string tag = content.substr(pos + 1, endPos - pos - 1);
+            std::string tag = content.substr(pos + 1, endPos - pos - 1);    //substr - returns a newly constructed string object with its value initialized to a copy of a substring of this object
             if (tag.empty() || tag[0] == '/') {
                 std::cout << "Error: Invalid tag found" << std::endl;
                 return false;
@@ -49,7 +49,7 @@ public:
         }
 
         if (!tagStack.empty()) {
-            std::cerr << "Error: Unmatched opening tags" << std::endl;
+            std::cout << "Error: Unmatched opening tags" << std::endl;
             return false;
         }
 
