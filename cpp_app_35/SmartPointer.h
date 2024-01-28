@@ -8,7 +8,7 @@ class UniquePtr {
 private:
     T* ptr;
 public:
-    explicit UniquePtr(T* p = nullptr) : ptr(p) {}
+    explicit UniquePtr(T* p = nullptr) : ptr(p) {}   //ptr(p) - is a member initialization list
     ~UniquePtr() {
         delete ptr;
     }
@@ -38,10 +38,10 @@ template <typename T>
 class SharedPtr {
 private:
     T* ptr;
-    size_t* refCount;
+    size_t* refCount;    // refCount is a pointer to size_t
 
     void release() {
-        if (refCount != nullptr && --(*refCount) == 0) {
+        if (refCount != nullptr && --(*refCount) == 0) {  // if refCount is not nullptr and refCount is 0 after decrement 
             delete ptr;
             delete refCount;
         }
@@ -60,7 +60,7 @@ public:
             release();
             ptr = other.ptr;
             refCount = other.refCount;
-            (*refCount)++;
+            (*refCount)++;   // (*refCount)++ - incrementing the value pointed to by the pointer 
         }
         return *this;
     }
