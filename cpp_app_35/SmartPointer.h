@@ -52,13 +52,13 @@ template <typename T>
 class SharedPtr {
 private:
     T* ptr;
-    size_t* ref_count;
+    size_t* ref_count;  //ref_count is a pointer to size_t
 
 public:
     explicit SharedPtr(T* p = nullptr) : ptr(p), ref_count(new size_t(1)) {}
 
     ~SharedPtr() {
-        if (--(*ref_count) == 0) {
+        if (--(*ref_count) == 0) {  // if (--(*ref_count) == 0) means that the pointer is the last one
             delete ptr;
             delete ref_count;
         }
