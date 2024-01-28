@@ -34,13 +34,13 @@ public:
     static void replaceAndDisplayStats(const std::string& filePath, const std::string& oldString, const std::string& newString) {
         std::ifstream inputFile(filePath);
         if (!inputFile.is_open()) {
-            std::cerr << "Error: Unable to open file " << filePath << std::endl;
+            std::cout << "Error: Unable to open file " << filePath << std::endl;
             return;
         }
 
         std::ofstream outputFile("temp.txt");
         if (!outputFile.is_open()) {
-            std::cerr << "Error: Unable to create temporary file" << std::endl;
+            std::cout << "Error: Unable to create temporary file" << std::endl;
             return;
         }
 
@@ -60,16 +60,19 @@ public:
         inputFile.close();
         outputFile.close();
 
-        std::remove(filePath.c_str());
-        std::rename("temp.txt", filePath.c_str());
-
-        std::cout << "Replacement Statistics:" << std::endl;
-        std::cout << "Occurrences replaced: " << occurrences << std::endl;
+        if (std::rename("temp.txt", filePath.c_str()) != 0) {
+            std::cout << "Error: Unable to replace the original file" << std::endl;
+        }
+        else {
+            std::cout << "Replacement Statistics:" << std::endl;
+            std::cout << "Occurrences replaced: " << occurrences << std::endl;
+        }
     }
+
     static void displayFileContent(const std::string& filePath) {
         std::ifstream inputFile(filePath);
         if (!inputFile.is_open()) {
-            std::cerr << "Error: Unable to open file " << filePath << std::endl;
+            std::cout << "Error: Unable to open file " << filePath << std::endl;
             return;
         }
 
@@ -81,7 +84,7 @@ public:
     static void flipFileContent(const std::string& filePath) {
         std::ifstream inputFile(filePath);
         if (!inputFile.is_open()) {
-            std::cerr << "Error: Unable to open file " << filePath << std::endl;
+            std::cout << "Error: Unable to open file " << filePath << std::endl;
             return;
         }
 
@@ -113,7 +116,7 @@ public:
     static void createFile(const std::string& filePath) {
         std::ofstream outputFile(filePath);
         if (!outputFile.is_open()) {
-            std::cerr << "Error: Unable to create file " << filePath << std::endl;
+            std::cout << "Error: Unable to create file " << filePath << std::endl;
             return;
         }
 
