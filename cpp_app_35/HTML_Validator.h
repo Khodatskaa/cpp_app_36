@@ -26,6 +26,7 @@ public:
             }
 
             if (tag.back() == '/') {
+				tag.pop_back();
             }
             else if (tag[0] == '/') {
                 if (tagStack.empty()) {
